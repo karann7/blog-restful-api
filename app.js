@@ -6,8 +6,8 @@ const {ObjectID} = require('mongodb');
 const path = require('path');
 // local dependencies.
 const mongoose = require('./db/mongoose');
-const Blog = require('./db/models/blogs');
-
+const Blog = require('./db/models/blog');
+const User = require('./db/models/user');
 // immutabile variables
 const app = express();
 const port = process.env.port || 3000;
@@ -17,13 +17,23 @@ const port = process.env.port || 3000;
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join( __dirname, 'public' )));
 
-// connecting mongoose
+// ******* ROUTES **********
 
-// routes
 // CREATE
+app.post('/users', ( req, res )=>{
+	let user = new User({
+		username: req.body.username,
+		password: req.body.password
+	});
+	user.save().then((user)=>{
+		res.status(200).send(`User created: ${user.username}`);
+	}).catch( e => res.status(400).send(e) );
+});
+
+
 app.post('/blogs', ( req, res )=>{
   // capturing the inputs
-	var blog = new Blog({
+	let blog = new Blog({
 		title: req.body.title,
 		blogpost: req.body.blogpost
 	});

@@ -1,13 +1,15 @@
 const mongoose = require('mongoose');
 
-const blogschema = new mongoose.Schema({
+const Schema = new mongoose.Schema({
   title: {
     type: String,
-     required: true
+     required: true,
+     minlength: 6
     },
   blogpost: {
     type: String,
-    required: true
+    required: true,
+    minlength: 6
   },
   author: {
     type: String,
@@ -15,11 +17,11 @@ const blogschema = new mongoose.Schema({
     default: 'Karann'
   },
   createdAt: {
-		type: Number,
-		default: null
+		type: Date,
+		default: Date.now
 	}, 
 });
 
-const Blog = mongoose.model('Blog', blogschema);
+const Blog = mongoose.model('Blog', Schema);
 
 module.exports = Blog;
