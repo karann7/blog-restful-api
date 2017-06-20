@@ -1,0 +1,24 @@
+body {
+  background-color: #33ffcc;
+}
+h1 {
+  text-align: center;
+}
+form {
+  width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+input[type="text"] {
+  width: 200px;
+  margin: 2rem;
+  text-align: center;
+}
+textarea {
+  width: 200px;
+  height: 100px;
+}
+input[type="submit"] {
+  width: 200px;
+  margin-top: 1rem;
+}
